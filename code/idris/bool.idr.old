@@ -1,0 +1,82 @@
+module boolOld
+
+import pair
+
+data bool = true | false
+
+id_bool: bool -> bool
+id_bool true = true
+id_bool false = false
+
+constFalse: bool -> bool
+constFalse _ = false
+
+constTrue: bool -> bool
+constTrue _ = true
+
+not: bool -> bool
+not true = false
+not false = true
+
+
+--There are 16 ways to fill in the results column for a truth table for
+  --a binary Boolean function, and there are thus exactly 16 such
+  --functions, and no more.--
+
+andp: pair bool bool -> bool
+andp (mkPair true false) = false
+andp (mkPair true true) = true
+andp (mkPair false false) = false
+andp (mkPair false true) = false
+
+orp: pair bool bool -> bool
+or (mkPair true true) = true
+or (mkPair false false) = false
+or (mkPair true false) = true
+or (mkPair false true) = true
+
+nandp: pair bool bool -> bool
+nandp (mkPair true true) = false
+nandp (mkPair true false) = true
+nandp (mkPair false true) = true
+nandp (mkPair false false) = true
+
+xorp: pair bool bool -> bool
+xor (mkPair true true) = false
+xor (mkPair false true) = true
+xor (mkPair true false) = true
+xor (mkPair false false) = false
+
+pand: bool -> bool -> bool
+pand (true) = id_bool
+pand (false) = constFalse
+
+por: bool -> bool -> bool
+por (true) = constTrue
+por (false) = id_bool
+
+pxor: bool -> bool -> bool
+pxor (true) = not
+pxor (false) = id_bool
+
+pnand: bool -> bool -> bool
+pnand (true) = not
+pnand (false) = constTrue
+
+--binary functions (bool -> bool -> bool), implicit--
+
+and: bool -> bool -> bool
+and true true = true
+and _ _ = false
+
+uf: bool -> bool
+uf = (and true)
+--id_bool--
+
+or: bool -> bool -> bool
+or false false = false
+or _ _ = true
+
+add: nat -> nat -> nat
+add O m = m
+add (S n) m = S ( add n m)

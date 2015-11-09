@@ -1,0 +1,37 @@
+module list_nat
+
+import nat 
+import pair
+
+data list_nat = nil|cons nat list_nat
+ 
+lO: list_nat
+lO = nil
+
+l1: list_nat
+l1 = cons O nil
+
+l2: list_nat
+l2 = (cons (S O) (cons (S (S O)) (nil)))
+
+l3: list_nat
+l3 = (cons (S O) (cons (S (S O)) (cons (S (S (S O))) (nil))))
+
+l4: list_nat
+l4 = (cons (S (S (S (S O)))) (cons (S (S (S (S (S O))))) (cons (S (S (S (S (S (S O)))))) nil)))
+
+length: list_nat -> nat
+length nil = O
+length (cons n l') = S (length l')
+
+{-
+length 13
+length (cons (S O) (cons (S (S O)) (cons (S (S (S O))) nil)))
+
+-}
+
+append: (pair list_nat list_nat) -> (list_nat)
+append (mkPair nil nil) = nil
+append (mkPair nil (cons m n)) = cons m n
+append (mkPair (cons m n) nil) = cons m n
+append (mkPair (cons m n) (cons s k)) = cons m (append (mkPair (n) (cons s k)))

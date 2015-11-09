@@ -1,0 +1,33 @@
+module dna
+
+import list
+import pair
+import bool
+import nat
+
+data base = A|T|C|G
+
+complement_base: base -> base
+complement_base A = T
+complement_base T = A
+complement_base C = G
+complement_base G = C
+
+complement_strand: list base -> list base
+complement_strand (h::t) = map complement_base (h::t)
+
+strand1: list (pair base base) -> list base
+strand1 (nil) = nil
+strand1 ((mkPair a b)::t) = a::(strand1 t)
+
+strand2: list (pair base base) -> list base
+strand2 (nil) = nil
+strand2 ((mkPair a b)::t) = b::(strand2 t)
+
+complete: list base -> list (pair base base)
+complete nil = nil
+complete (h::t) = (mkPair  h (map complement_base t))::(mkPair t (map complement_base) (t))
+
+isTrue: base -> bool
+isTrue a = true
+isTrue b = false

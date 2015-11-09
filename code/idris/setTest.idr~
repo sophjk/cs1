@@ -1,0 +1,66 @@
+module setTest
+
+import set
+import nat
+import eq
+import list
+import bool
+
+s0: set nat
+s0 = new_set
+
+s1: set nat
+s1 = set_insert (S O) s0
+
+s2: set nat
+s2 = set_insert (S O) s1
+--this is not ok, because it gives you back (1::1::nil) even though it
+  --should be (1::ni)
+
+test1: bool
+test1= eql (mkSet (O::(S O)::nil)) (mkSet (O::(S O)::(S (S O))::nil))
+
+list1: list nat
+list1 = (O::(S O)::nil)
+
+list2: list nat
+list2 = (O::(S O)::(S (S O))::nil)
+
+list3: list nat
+list3 = (O::(S O)::(S O)::nil)
+
+list4: list nat
+list4 = (O::O::O::(S (S (S O)))::(S (S O))::nil)
+
+list5: list bool
+list5 = (true::false::true::true::nil)
+
+list6: list bool
+list6 = (false::false:false::nil)
+
+list7: list bool
+list7 = (true::true::true::nil)
+
+list8: list bool
+list8 = (false::true::false::false::nil)
+
+set1: set nat
+set1 = mkSet list1
+
+set2: set nat
+set2 = mkSet list2
+
+set3: set nat
+set3 = mkSet list3
+
+set4: set nat
+set4 = mkSet list4
+
+set5: set bool
+set5 = set list5
+
+set6: set bool
+set6 = set list6
+
+set7: set bool
+set7 = set list7

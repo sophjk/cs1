@@ -1,0 +1,23 @@
+module people
+
+import person
+import bool
+import nat
+
+
+-- An example value of type Person
+tom: Person
+tom = mkPerson "Tommy" 23 true 72
+
+mary: Person
+mary = mkPerson "Mary" 25 true 60
+
+ge: Person
+ge = mkPerson "Ge" 21 true 64
+
+daryl: Person
+daryl = mkPerson "Daryl" 19 false 71
+
+women: list Person
+women = filter gender people
+

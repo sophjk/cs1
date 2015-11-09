@@ -1,0 +1,25 @@
+module relationTest
+
+import relation
+import person
+import people
+import bool
+import list
+import BallPlayerListings
+import BallPlayer
+import nat
+
+years' : Nat
+years' = query plus 0 age gender people
+--adds list of ages of all those gender = true in the people list
+
+nombres: String
+nombres = query (++) "" name gender people
+--appends all names within the list of people with gender = true
+
+nombre: String
+nombre = query (++) "" name allstar listPlayers
+
+
+names'': String
+names'' = query2 people gender name (++) ""

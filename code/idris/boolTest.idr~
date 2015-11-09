@@ -1,0 +1,94 @@
+module boolTest
+
+import bool
+import pair
+
+data boolTest = bool
+
+
+t:  bool
+t = true
+
+f: bool
+f = false
+
+tf: pair bool bool
+tf = (mkPair true false)
+
+tt: pair bool bool
+tt = (mkPair true true)
+
+ff: pair bool bool
+ff = (mkPair false false)
+
+ft: pair bool bool
+ft = (mkPair false true)
+
+a: bool
+a = andp tt
+
+a': bool
+a' = andp ff
+
+a'': bool
+a'' = andp tf
+
+a''': bool
+a''' = andp ft
+
+b: bool
+b = or tt
+
+b': bool
+b' = or ff
+
+b'': bool
+b'' = or ft
+
+b''': bool
+b''' = or tf
+
+c: bool
+c = nandp tt
+
+c': bool
+c' = nandp ff
+
+c'': bool
+c'' = nandp tf
+
+c''': bool
+c''' = nandp ft
+
+d: bool
+d = xor tt
+
+d': bool
+d' = xor ff
+
+d'': bool
+d'' = xor ft
+
+d''': bool
+d''' = xor tf
+
+pand_t_t: bool
+pand_t_t = pand true true
+
+pand_t_f: bool
+pand_t_f = pand true false
+
+pand_f_f: bool
+pand_f_f = pand false false
+
+pand_f_t: bool
+pand_f_t = pand false true
+
+por_t_t: bool
+por_t_t = por true true
+
+por_t_f: bool
+por_t_f = por true false
+
+por_f_f: bool
+por_f_t =  por false true

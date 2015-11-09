@@ -1,0 +1,39 @@
+module listTest
+
+import nat
+import list
+import bool
+
+li: list bool
+li = true :: false :: true :: true :: nil
+
+lO: nat
+lO = length (O::nil)
+--expect one--
+
+l1: nat
+l1 = length (true::nil)
+--expect one--
+
+l2: nat
+l2 = length nil {a = nat}
+
+l3: nat
+l3 = length (true::false::nil)
+--expect 2
+
+l4: list bool
+l4 = append (false::false::nil) (true::true::true::nil)
+
+l5: list nat
+l5 = append (O::(S O)::nil) ((S (S O))::(S (S (S O)))::nil)
+
+l: list nat
+l = (O::(S O)::(S (S O))::nil)
+
+map1: list bool
+map1 = map evenb l
+
+map2: list nat
+map2 = map lep l
+

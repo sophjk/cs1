@@ -1,0 +1,32 @@
+module set
+
+import list
+import ite
+import bool
+import eq
+
+|||mkSet is meant to be private
+data set a = mkSet (list a)
+
+|||A starting point for building any set
+new_set: set a
+new_set = mkSet (nil)
+
+set_insert: (eq a) => a -> set a -> set a
+set_insert v (mkSet l) = ite (member v l) (mkSet l) (mkSet (v::l))
+
+subset_elements: (eq a) => list a -> list a -> bool
+subset_elements nil nil = false
+subset_elements (h1::t1) nil = false
+subset_elements nil (h1::t1) = false
+subset_elements (h1::t1) (h2::t2) = ite (and (member (h1 (h2::t2))) (member t2 (h2::t2))) true false
+
+same_elements: (eq a) => list a -> list a -> bool
+same_elements l1  l2  =  (subset_elements l1 l2)
+
+eql_set: (eq a) => set a -> set a -> bool
+eql_set (mkSet (h1::t1)) (mkSet (h2::t2)) = same_elements (h1::t1) (h2::t2)
+
+--member is type a-> list a -> bool
+instance (eq a) => eq (set a) where
+  eql s1 s2 = eql_set s1 s2

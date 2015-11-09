@@ -1,0 +1,29 @@
+module colors
+
+import bool
+import pair
+
+data colors = red|yellow|green|cyan|blue|magenta
+
+complement: colors -> colors
+complement red = cyan
+complement yellow = blue
+complement green = magenta
+complement cyan = red
+complement blue = yellow
+complement magenta = green
+
+additive: colors -> bool
+additive red = true
+additive green = true
+additive blue = true
+additive _ = false
+
+subtractive: colors -> bool
+subtractive red = false
+subtractive green = false
+subtractive blue = false
+subtractive _ = true
+
+complements: pair colors colors -> bool
+complements red cyan = true

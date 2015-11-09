@@ -1,0 +1,76 @@
+module bool
+
+data bool = true | false
+
+id_bool: bool -> bool
+id_bool true = true
+id_bool false = false
+
+constFalse: bool -> bool
+constFalse _ = false
+
+constTrue: bool -> bool
+constTrue _ = true
+
+not: bool -> bool
+not true = false
+not false = true
+
+
+--There are 16 ways to fill in the results column for a truth table for
+  --a binary Boolean function, and there are thus exactly 16 such
+  --functions, and no more.--
+
+and: bool -> bool -> bool
+and (true) (false) = false
+and (true) (true) = true
+and (false) (false) = false
+and (false) (true) = false
+
+or: bool -> bool -> bool
+or (true) (true) = true
+or (false) (false) = false
+or (true) (false) = true
+or (false) (true) = true
+
+nand: bool -> bool -> bool
+nand (true) (true) = false
+nand (true) (false) = true
+nand (false) (true) = true
+nand (false) (false) = true
+
+xor: bool -> bool -> bool
+xor (true) (true) = false
+xor (false) (true) = true
+xor (true) (false) = true
+xor (false) (false) = false
+
+pand: bool -> bool -> bool
+pand (true) = id_bool
+pand (false) = constFalse
+
+por: bool -> bool -> bool
+por (true) = constTrue
+por (false) = id_bool
+
+pxor: bool -> bool -> bool
+pxor (true) = not
+pxor (false) = id_bool
+
+pnand: bool -> bool -> bool
+pnand (true) = not
+pnand (false) = constTrue
+
+--binary functions (bool -> bool -> bool), implicit--
+
+and: bool -> bool -> bool
+and true true = true
+and _ _ = false
+
+uf: bool -> bool
+uf = (and true)
+--id_bool--
+
+or: bool -> bool -> bool
+or false false = false
+or _ _ = true
