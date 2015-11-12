@@ -224,7 +224,7 @@ set_insert v (mkSet l) = ite (member v l)
 -- helper function: return list l without value v
 list_remove: (eq a) => (v: a) -> (l: list a) -> list a
 list_remove v nil = nil
-list_remove v (h::t) = ite (eql v h) (list_remove h t) (h::(list_remove v t))
+list_remove v (h::t) = ite (eql v h) (list_remove v t) (h::(list_remove v t))
 
 -- set_remove: (eq a) => (v: a) -> (s: set a) -> set a
 -- Return the set, s - {v}
@@ -252,17 +252,10 @@ set_member v (mkSet l) = ite (member v l) true false
 -- hint, write a function, combine, that combines two
 -- lists into one, avoiding duplicate element
 combine: (eq a) => list a -> list a -> list a
-combine nil nil = nil
-combine (h::nil) nil = (h::nil)
-combine nil (h::nil) = (h::nil)
-combine (h::nil) (h1::nil) = ite (eql h h1) (h1::nil) (h::h1::nil)
-combine nil (h::t) = ite (member h t) (combine nil t) (h::(combine nil t))
-combine (h::nil) l2 = ite (member h l2) (combine nil l2) (h::(combine nil l2))
-combine (h::t) nil = ite (member h t) (combine t nil) (h::t)
-combine (h::t) l2 = ite (member h t) (combine t l2) (ite (member h l2) (combine t l2) (h::(combine t l2)))
+combine nil l2 = l2
+combine (h::t) l2 = ite (member h l2) (combine t l2) (h::(combine t l2))
 
 set_union (mkSet l1) (mkSet l2) = mkSet (combine l1 l2)
-
 -------------------------------------
 
 -- here we provide you with an incomplete helper function
