@@ -1,7 +1,7 @@
 def hs(n):
     a=1
+    print(n)
     while (n != 1):
-        print(n)
         if (n%2 is 0):
             n = (n//2)
         else:
